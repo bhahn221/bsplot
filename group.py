@@ -100,7 +100,7 @@ def plot(xname, ydata, yname, xlabel, ylabel, xtick_center=False, xtick_rot=0, y
 
     # geomean - add line
     if geomean == True:
-        plt.axvline(len(x) - 1.5, ymin=0, ymax=y_max + 1.0, color=(0, 0, 0))
+        plt.axvline(len(x) - 1.0 - barwidth, ymin=0, ymax=y_max + 1.0, color=(0, 0, 0))
     
     # legend
     ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2, 
