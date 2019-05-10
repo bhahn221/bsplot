@@ -1,8 +1,9 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.stats.mstats import gmean
-
 def plot(xname, ydata, yname, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=90, figsize=(10, 5), fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+    # import packages
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy.stats.mstats import gmean
+
     # data to list
     x = list(xname)
     y = [list(yd) for yd in ydata]
