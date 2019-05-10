@@ -41,7 +41,7 @@ def plot(xname, ydata, yname, xlabel, ylabel, xtick_center=False, xtick_rot=0, y
     # x tick - set
     if xtick_center == True:
         # tick marks (major)
-        ax.set_xticks(np.arange(0, len(x) + 1.0, 1.0) - barwidth)
+        ax.set_xticks(np.arange(0, len(x) + 1.0, 1.0) - 0.5)
         ax.set_xticklabels('')
 
         # tick labels (minor, tick marks removed)
