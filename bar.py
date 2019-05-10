@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats.mstats import gmean
 
-def plot(x, y, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=0, figsize=(10, 5), fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+def plot(x, y, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=0, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
     # data to list
     x = list(x)
     y = list(y)
@@ -18,7 +18,7 @@ def plot(x, y, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None
 
     # plot
     fig, ax = plt.subplots(1, 1, figsize=figsize)
-    rects = ax.bar(x, y, color=color, width=0.7)
+    rects = ax.bar(x, y, color=color, width=barwidth)
 
     # axis
     ax.set_xlabel(xlabel, size=fontsize)
@@ -27,7 +27,7 @@ def plot(x, y, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None
     # x tick - set
     if xtick_center == True:
         # tick marks (major)
-        ax.set_ticks(np.arange(0, len(x) + 1.0, 1.0) - 0.5)
+        ax.set_xticks(np.arange(0, len(x) + 1.0, 1.0) - 0.5)
         ax.set_xticklabels('')
 
         # tick labels (minor, tick marks removed)
@@ -61,18 +61,18 @@ def plot(x, y, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None
             height = rect.get_height()
             ax.text(rect.get_x() + rect.get_width() / 2., 1.0 * height, 
                     '%.2f' % height + unit, 
-                    ha='center', va='bottom', size=fontsize)
+                    ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
 
     # title
     if title != None:
         plt.title(title, size=20)
 
-    # tight layout
-    fig.tight_layout()
-
     # geomean - add line
     if geomean == True:
-        plt.axvline(len(x)-1.5, ymin=0, ymax=max(y) + 1.0, color=(0, 0, 0))
+        plt.axvline(len(x) - 1.5, ymin=0, ymax=max(y) + 1.0, color=(0, 0, 0))
+
+    # tight layout
+    fig.tight_layout()
 
     # save
     if save != None:
