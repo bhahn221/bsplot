@@ -1,4 +1,4 @@
-def plot(x, y, s, xlabel, ylabel, s_scale=50, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(7, 7), fontsize=18, title=None, title_fontsize=20, save=None):
+def plot(x, y, s, g, c, xlabel, ylabel, s_scale=50, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(7, 7), fontsize=18, title=None, title_fontsize=20, save=None):
     # import packages
     if tex == True:
         import matplotlib
@@ -17,11 +17,12 @@ def plot(x, y, s, xlabel, ylabel, s_scale=50, tex=False, xtick_range=None, xtick
     s = [sp * s_scale for sp in s]
     
     # c - default
-    c = ['b', 'y', 'g', 'r']
+    from color_chart import color_chart
+    color_list = [color_chart[c[gi]] for gi in g]
 
     # plot
     fig, ax = plt.subplots(1, 1, figsize=figsize)
-    ax.scatter(x, y, s, c=(0.1, 0.1, 0.4), alpha=0.5)
+    ax.scatter(x, y, s, c=color_list, alpha=0.5)
 
     # axis
     ax.set_xlabel(xlabel, size=fontsize)

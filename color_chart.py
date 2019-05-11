@@ -1,0 +1,9 @@
+color_chart = {}
+color_chart['red'] = (0.8, 0.1, 0.1)
+color_chart['orange'] = (0.8, 0.4, 0.1)
+color_chart['yellow'] = (0.8, 0.8, 0.1)
+color_chart['green'] = (0.1, 0.4, 0.1)
+color_chart['blue'] = (0.1, 0.1, 0.8)
+color_chart['navy'] = (0.1, 0.1, 0.4)
+color_chart['purple'] = (0.4, 0.1, 0.4)
+color_chart['black'] = (0.1, 0.1, 0.1)
