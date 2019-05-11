@@ -1,5 +1,9 @@
-def plot(xname, ydata, yname, xlabel, ylabel, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_type=None, topnum_index=None, topnum_rot=90, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_type=None, topnum_index=None, topnum_rot=90, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
     # import packages
+    if tex == True:
+        import matplotlib
+        matplotlib.rcParams['text.usetex'] = True
+        matplotlib.rcParams['text.latex.unicode'] = True
     import matplotlib.pyplot as plt
     import numpy as np
     from scipy.stats.mstats import gmean

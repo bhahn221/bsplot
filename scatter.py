@@ -1,6 +1,6 @@
-def plot(x, y, s, xlabel, ylabel, s_scale=50, label_tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(7, 7), fontsize=18, title=None, title_fontsize=20, save=None):
+def plot(x, y, s, xlabel, ylabel, s_scale=50, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(7, 7), fontsize=18, title=None, title_fontsize=20, save=None):
     # import packages
-    if label_tex == True:
+    if tex == True:
         import matplotlib
         matplotlib.rcParams['text.usetex'] = True
         matplotlib.rcParams['text.latex.unicode'] = True
