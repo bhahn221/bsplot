@@ -28,16 +28,16 @@ def plot(x, y, s, g, c, xlabel, ylabel, s_scale=50, tex=False, xtick_range=None,
     ax.set_xlabel(xlabel, size=fontsize)
     ax.set_ylabel(ylabel, size=fontsize)
 
-    # y tick - default
+    # x tick - default
     if xtick_interval == None:
         xtick_interval = 1.0
     if type(xtick_range) == type(None) and xtick_range == None:
-        xtick_range = np.arange(0, max(y) + 1.0, xtick_interval)
+        xtick_range = np.arange(0, max(x) + 1.0, xtick_interval)
     
     # x tick - set
     ax.set_xticks(xtick_range)
     ax.set_xticklabels(xtick_range, fontsize=fontsize)
-    plt.ylim(0, max(xtick_range))
+    plt.xlim(0, max(xtick_range))
 
     # y tick - default
     if ytick_interval == None:
