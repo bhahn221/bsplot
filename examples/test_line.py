@@ -25,11 +25,12 @@ def main():
     
     x = [[x0_0, x0_1], [x1_0, x1_1], [x2_0, x2_1], [x3_0, x3_1]]
     y = [[y0_0, y0_1], [y1_0, y1_1], [y2_0, y2_1], [y3_0, y3_1]]
+    yname = ['Simulated Annealing (TVM)', 'Reinforcement Learning', 'Simulated Annealing + Adaptive Sampling', 'Reinforcment Learning + Simulated Annealing (ReLeASE)']
 
     l = ['--', ':', '-.', ''] 
     c = ['yellow', 'red', 'green', 'blue']
 
-    line.plot(x, y, l, c, 'Physical Measurements', 'TFLOPS', xtick_interval=8, ytick_interval=4, save='line.pdf')
+    line.plot(x, y, yname, l, c, 'Physical Measurements', 'TFLOPS', xtick_interval=8, ytick_interval=4, save='line.pdf')
 
 if __name__ == '__main__':
     main()
