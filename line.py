@@ -21,7 +21,7 @@ class LegendObject(object):
 
         if self.line == '--':
             patch1 = mpatches.Rectangle(
-                [x0 + 2*width/5, y0+2*height/3],  width/5, height, facecolor=self.color,
+                [x0 + 6*width/13, y0+2*height/3],  width/13, height, facecolor=self.color,
                 transform=handlebox.get_transform())
             handlebox.add_artist(patch1)
         elif self.line == ':':
@@ -47,10 +47,10 @@ class LegendObject(object):
             handlebox.add_artist(patch5)
         elif self.line == '-.':
             patch1 = mpatches.Rectangle(
-                [x0 + 4.5*width/13, y0+2*height/3],  2*width/13, height, facecolor=self.color,
+                [x0 + 5*width/13, y0+2*height/3],  width/13, height, facecolor=self.color,
                 transform=handlebox.get_transform())
             patch2 = mpatches.Rectangle(
-                [x0 + 7*width/13, y0+2*height/3],  2*width/13, height, facecolor=self.color,
+                [x0 + 7*width/13, y0+2*height/3],  width/13, height, facecolor=self.color,
                 transform=handlebox.get_transform())
             handlebox.add_artist(patch1)
             handlebox.add_artist(patch2)
