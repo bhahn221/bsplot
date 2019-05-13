@@ -1,4 +1,4 @@
-def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=0, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, geomean_name='long', topnum=False, topnum_rot=0, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
     # import packages
     if tex == True:
         import matplotlib
@@ -14,7 +14,10 @@ def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick
 
     # geomean - add data
     if geomean == True:
-        x.append('geomean')
+        if geomean_name == 'short':
+            x.append('gm')
+        else:
+            x.append('geomean')
         y.append(gmean(y))
 
     # colorscheme
@@ -64,7 +67,7 @@ def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick
     if topnum == True:
         for rect in rects:
             height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2., 1.0 * height, 
+            ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height, 
                     '%.2f' % height + unit, 
                     ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
 
