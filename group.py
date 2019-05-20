@@ -1,4 +1,4 @@
-def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=90, figsize=(10, 5), fontsize=18, colorscheme='blue', legend='top', title=None, title_fontsize=20, save=None):
+def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_rot=90, figsize=(10, 5), fontsize=18, colorscheme='blue', legend='top', title=None, title_fontsize=20, save=None, horizontal_one=False):
     # import packages
     if tex == True:
         import matplotlib
@@ -74,7 +74,7 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
     # y tick - default
     if ytick_interval == None:
         ytick_interval = 1.0
-    if ytick_range == None:
+    if type(ytick_range) == type(None):
         y_max = 0
         for yd in y:
             yd_max = max(yd)
@@ -84,17 +84,19 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
 
     # y tick - set
     ax.set_yticks(ytick_range)
-    ax.set_yticklabels([str(n) + unit for n in list(ytick_range)], fontsize=fontsize)
+    #ax.set_yticklabels([str(n) + unit for n in list(ytick_range)], fontsize=fontsize)
+    ax.set_yticklabels([str(round(n, 2)) + unit for n in list(ytick_range)], fontsize=fontsize)
 
     # y tick - limit
-    plt.ylim(0, max(ytick_range))
+    #plt.ylim(0, max(ytick_range))
+    plt.ylim(min(ytick_range), max(ytick_range))
 
     # number on top
     if topnum == True:
         for rects in rects_collection:
             for rect in rects:
                 height = rect.get_height()
-                ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height, 
+                ax.text(rect.get_x() + rect.get_width() / 2., 1.005 * height, 
                         '%.2f' % height + unit, 
                         ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
 
@@ -107,11 +109,17 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
         plt.axvline(len(x) - 1.0 - barwidth, ymin=0, ymax=y_max + 1.0, color=(0, 0, 0))
     
     # legend
-    if legend == 'top':
-        ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2, 
-                  fancybox=False, edgecolor=(0, 0, 0), fontsize=fontsize)
-    else:
-        ax.legend(fancybox=False, edgecolor=(0, 0, 0), fontsize=fontsize)
+    if legend != None:
+        if legend == 'top':
+            ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2, 
+                      fancybox=False, edgecolor=(0, 0, 0), fontsize=fontsize)
+        else:
+            ax.legend(loc='upper left', 
+                      fancybox=False, edgecolor=(0, 0, 0), fontsize=fontsize)
+
+    # FIXME
+    if horizontal_one == True:
+        plt.axhline(1.0, xmin=0, xmax=len(x), linestyle='--', color=(0.1, 0.1, 0.1))
 
     # tight layout
     fig.tight_layout()

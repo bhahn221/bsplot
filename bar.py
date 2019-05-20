@@ -1,4 +1,4 @@
-def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, geomean_name='long', topnum=False, topnum_rot=0, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, geomean_name='long', topnum=False, topnum_rot=0, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None, horizontal_one=False):
     # import packages
     if tex == True:
         import matplotlib
@@ -53,21 +53,23 @@ def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick
     # y tick - default
     if ytick_interval == None:
         ytick_interval = 1.0
-    if ytick_range == None:
+    if type(ytick_range) == type(None):
         ytick_range = np.arange(0, max(y) + 1.0, ytick_interval)
 
     # y tick - set
     ax.set_yticks(ytick_range)
     ax.set_yticklabels([str(n) + unit for n in list(ytick_range)], fontsize=fontsize)
+    #ax.set_yticklabels([str(round(n, 2)) + unit for n in list(ytick_range)], fontsize=fontsize)
 
     # y tick - limit
     plt.ylim(0, max(ytick_range))
+    #plt.ylim(min(ytick_range), max(ytick_range))
 
     # number on top
     if topnum == True:
         for rect in rects:
             height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height, 
+            ax.text(rect.get_x() + rect.get_width() / 2., height + (max(y) / 20.0), 
                     '%.2f' % height + unit, 
                     ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
 
@@ -78,6 +80,10 @@ def plot(x, y, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick
     # geomean - add line
     if geomean == True:
         plt.axvline(len(x) - 1.5, ymin=0, ymax=max(y) + 1.0, color=(0, 0, 0))
+
+    # FIXME
+    if horizontal_one == True:
+        plt.axhline(1.0, xmin=0, xmax=len(x), linestyle='--', color=(1, 1, 1))
 
     # tight layout
     fig.tight_layout()
