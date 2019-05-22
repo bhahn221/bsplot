@@ -71,15 +71,16 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
     # x tick - limit
     plt.xlim(-barwidth, len(x) - barwidth)
 
+    y_max = 0
+    for yd in y:
+        yd_max = max(yd)
+        if yd_max > y_max:
+            y_max = yd_max
+    
     # y tick - default
     if ytick_interval == None:
         ytick_interval = 1.0
     if type(ytick_range) == type(None):
-        y_max = 0
-        for yd in y:
-            yd_max = max(yd)
-            if yd_max > y_max:
-                y_max = yd_max
         ytick_range = np.arange(0, yd_max + 1.0, ytick_interval)
 
     # y tick - set
@@ -96,7 +97,12 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
         for rects in rects_collection:
             for rect in rects:
                 height = rect.get_height()
-                ax.text(rect.get_x() + rect.get_width() / 2., 1.005 * height, 
+                if y_max < 3:
+                    ax.text(rect.get_x() + rect.get_width() / 2., height + 0.05, 
+                        '%.2f' % height + unit, 
+                        ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
+                else:
+                    ax.text(rect.get_x() + rect.get_width() / 2., height + 0.2, 
                         '%.2f' % height + unit, 
                         ha='center', va='bottom', size=fontsize, rotation=topnum_rot)
 
