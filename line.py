@@ -82,7 +82,7 @@ def merge_data(xdatas, ydatas):
 
     return range(0, x_max), ylist_new
 
-def plot(xlist, ylist, yname, l, c, xlabel, ylabel, legend=False, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(10, 5), fontsize=18, title=None, title_fontsize=20, save=None):
+def plot(xlist, ylist, yname, l, c, xlabel, ylabel, legend=None, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(10, 5), fontsize=18, title=None, title_fontsize=20, save=None):
     # import packages
     if tex == True:
         import matplotlib
