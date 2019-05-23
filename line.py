@@ -82,7 +82,7 @@ def merge_data(xdatas, ydatas):
 
     return range(0, x_max), ylist_new
 
-def plot(xlist, ylist, yname, l, c, xlabel, ylabel, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(10, 5), fontsize=18, title=None, title_fontsize=20, save=None):
+def plot(xlist, ylist, yname, l, c, xlabel, ylabel, tex=False, xtick_range=None, xtick_interval=None, ytick_range=None, ytick_interval=None, figsize=(10, 5), fontsize=18, legend=None, title=None, title_fontsize=20, save=None):
     # import packages
     if tex == True:
         import matplotlib
@@ -153,7 +153,8 @@ def plot(xlist, ylist, yname, l, c, xlabel, ylabel, tex=False, xtick_range=None,
         handler_map[i] = LegendObject(color_list[i], l[i])
 
     # legend
-    plt.legend(range(len(yname)), yname, handler_map=handler_map, 
+    if legend != None:
+        plt.legend(range(len(yname)), yname, handler_map=handler_map, 
                fontsize=fontsize, fancybox=False, edgecolor=(0, 0, 0))
 
     # title
