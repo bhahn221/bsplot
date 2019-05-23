@@ -1,4 +1,4 @@
-def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_type=None, topnum_index=None, topnum_rot=90, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, title_fontsize=20, save=None):
+def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xtick_rot=0, ytick_range=None, ytick_interval=None, unit='', geomean=False, topnum=False, topnum_type=None, topnum_index=None, topnum_rot=90, figsize=(10, 5), barwidth=0.7, fontsize=18, colorscheme='blue', title=None, legend=None, title_fontsize=20, save=None):
     # import packages
     if tex == True:
         import matplotlib
@@ -108,7 +108,8 @@ def plot(xname, ydata, yname, xlabel, ylabel, tex=False, xtick_center=False, xti
         plt.axvline(len(x) - 1.5, ymin=0, ymax=y_max + 1.0, color=(0, 0, 0))
     
     # legend
-    ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2, 
+    if legend != None:
+        ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2, 
               fancybox=False, edgecolor=(0, 0, 0), fontsize=fontsize)
 
     # tight layout
